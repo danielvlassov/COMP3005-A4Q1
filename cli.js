@@ -95,9 +95,17 @@ const updateStudentEmail = async (answers) => {
   const client = await pool.connect();
   try {
     const res = await client.query('UPDATE students SET email = $1 WHERE student_id = $2 RETURNING *', [answers.newEmail, answers.studentId]);
-    console.log('Student email updated:', res.rows[0]);
+    if (res.rowCount === 0) {
+      console.log(`No student found with ID ${answers.studentId}.`);
+    } else {
+      console.log('Student email updated:', res.rows[0]);
+    }
   } catch (err) {
-    console.error('Error:', err);
+    if (err.code === '23505') { // Code for duplicate
+      console.error('Error: The email is already in use by another student.');
+    } else {
+      console.error('Error:', err.message);
+    }
   } finally {
     client.release();
   }
@@ -106,10 +114,14 @@ const updateStudentEmail = async (answers) => {
 const deleteStudent = async (answers) => {
   const client = await pool.connect();
   try {
-    await client.query('DELETE FROM students WHERE student_id = $1', [answers.studentId]);
-    console.log('Student deleted successfully.');
+    const res = await client.query('DELETE FROM students WHERE student_id = $1 RETURNING *', [answers.studentId]);
+    if (res.rowCount === 0) {
+      console.log(`No student found with ID ${answers.studentId}.`);
+    } else {
+      console.log('Student has been deleted.');
+    }
   } catch (err) {
-    console.error('Error:', err);
+    console.error('Error:', err.message);
   } finally {
     client.release();
   }
