@@ -3,7 +3,7 @@
 Daniel Vlassov
 SID: 101222428
 
-Video URL: 
+Video URL: https://youtu.be/vkXRnpmnCbE
 
 # Requirements
 
@@ -19,9 +19,9 @@ Video URL:
 ## Functions
 - initializeDatabase() -> Drops existing table if exists (for testing), then populates the students table WITH DQL/DLL in the DB
 - getAllStudents() -> Displays all student records from the DB
-- addStudent(answers) -> Adds a new student to the database from CLI prompts
-- updateStudentEmail(answers) -> Updates the email of a student based on their ID
-- deleteStudent(answers) -> Removes a student from the database using their ID
+- addStudent(answers) -> Adds a new student to the database from CLI prompts 
+- updateStudentEmail(answers) -> Updates the email of a student based on their ID (As per spec, graceful error when duplicate)
+- deleteStudent(answers) -> Removes a student from the database using their ID (As per spec, graceful error when ID not found)
 - main() -> CLI flow
 
 
