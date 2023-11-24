@@ -1,0 +1,19 @@
+{
+  "name": "comp3005-a4q1",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.9.5",
+    "inquirer": "^9.2.12",
+    "pg": "^8.11.3"
+  }
+}
